@@ -37,7 +37,7 @@ i = 0
 while (i<=delay):
    vDelay = time.strftime('%M:%S', time.gmtime(iDelay))
    draw.rectangle((0, 0, epd.height, epd.width), fill = 255)      #Needed to for inbetween refreshes
-   draw.text((30,15),"UV Light On",font = font2, fill = 0)
+   draw.text((30,15),"EVENT On",font = font2, fill = 0)
    draw.text((60, 45),vDelay, font = font, fill = 0)
    epd.displayPartial(epd.getbuffer(HBlackImage))
    i += 1
@@ -48,7 +48,7 @@ while (i<=delay):
 requests.post('https://maker.ifttt.com/trigger/"EVENT""/with/key/""IFTTTKEY"')  #*****Replace EVENT and IFTTTKEY with IFTTT credentials NO QUOTES
 
 draw.rectangle((0, 0, epd.height, epd.width), fill = 255)      #Needed to for inbetween refreshes
-draw.text((27, 20),"UV Curing", font = font, fill = 0)
+draw.text((27, 20),"EVENT", font = font, fill = 0)
 draw.text((34, 55),"Complete", font = font, fill = 0)
 epd.displayPartial(epd.getbuffer(HBlackImage))
 
