@@ -10,10 +10,8 @@ if os.path.exists(libdir):
     sys.path.append(libdir)
 import logging
 from waveshare_epd import epd2in13_V2
-import time
 from PIL import Image,ImageDraw,ImageFont
 import traceback
-from datetime import datetime
 
 epd = epd2in13_V2.EPD()                                         #Set the display
 
@@ -33,7 +31,6 @@ indelay = input("Enter Delay in Mins: ")
 #*****************EVENT1*****************
 requests.post('https://maker.ifttt.com/trigger/"EVENT""/with/key/""IFTTTKEY"')  #*****Replace EVENT and IFTTTKEY with IFTTT credentials NO QUOTES
 
-
 delay = indelay * 60
 iDelay = delay
 i = 0
@@ -45,6 +42,7 @@ while (i<=delay):
    epd.displayPartial(epd.getbuffer(HBlackImage))
    i += 1
    iDelay -= 1
+#  time.sleep(1)    Uncomment if your Display does not have any lag/delay built in 
 
 #*****************EVENT2*****************
 requests.post('https://maker.ifttt.com/trigger/"EVENT""/with/key/""IFTTTKEY"')  #*****Replace EVENT and IFTTTKEY with IFTTT credentials NO QUOTES
