@@ -34,6 +34,7 @@ requests.post('https://maker.ifttt.com/trigger/"EVENT""/with/key/""IFTTTKEY"')  
 delay = indelay * 60
 iDelay = delay
 i = 0
+j = 0
 while (i<=delay):
    vDelay = time.strftime('%M:%S', time.gmtime(iDelay))
    draw.rectangle((0, 0, epd.height, epd.width), fill = 255)      #Needed to for inbetween refreshes
@@ -43,7 +44,16 @@ while (i<=delay):
    i += 1
    iDelay -= 1
 #  time.sleep(1)    Uncomment if your Display does not have any lag/delay built in 
-
+#Refresh display after 90 seconds to avoid ghosting
+   if (j == 90):    #*********Change to increase or decrease display refresh interval (secs)*******
+       epd.init(epd.FULL_UPDATE)                                       
+       print("Refreshing...")
+       epd.displayPartBaseImage(epd.getbuffer(HBlackImage))
+       epd.init(epd.PART_UPDATE)
+       j = 0
+       iDelay -= 4  #<<<<********************Replace 4 with the amount of time it takes for deplay to update (seconds)**************
+       delay -= 4   #<<<<********************Replace 4 with the amount of time it takes for deplay to update (seconds)**************
+    
 #*****************EVENT2*****************
 requests.post('https://maker.ifttt.com/trigger/"EVENT""/with/key/""IFTTTKEY"')  #*****Replace EVENT and IFTTTKEY with IFTTT credentials NO QUOTES
 
